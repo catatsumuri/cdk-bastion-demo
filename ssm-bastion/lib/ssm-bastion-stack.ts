@@ -17,6 +17,9 @@ export class SsmBastionStack extends cdk.Stack {
     });
 
     const sg = new ec2.SecurityGroup(this, 'Sg', { vpc });
+    // 警告: SSHポート22番がインターネット全体 (0.0.0.0/0) に公開されています。
+    // これはデモ用途のみを想定しています。本番環境では特定のIPに制限するか、
+    // SSM Session Managerを利用してこのルール自体を削除してください。
     sg.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.SSH);
 
     const userData = ec2.UserData.forLinux();
@@ -33,11 +36,15 @@ export class SsmBastionStack extends cdk.Stack {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MICRO),
       machineImage: ami,
       securityGroup: sg,
+      // cdk.json の context.keyPairName に使用するキーペア名を設定してください。
       keyPair: ec2.KeyPair.fromKeyPairName(this, 'KeyPair', this.node.tryGetContext('keyPairName')),
       userData,
       role,
     });
 
+    // クロスアカウントのSSM踏み台として使用する場合、接続先アカウントに
+    // CrossAccountSSMRole という名前のIAMロールを作成し、このインスタンスの
+    // ロールARNからのAssumeRoleを許可してください。
     instance.addToRolePolicy(new iam.PolicyStatement({
       actions: ['sts:AssumeRole'],
       resources: ['arn:aws:iam::*:role/CrossAccountSSMRole'],

@@ -14,17 +14,9 @@ npx cdk deploy
 
 | キー | 説明 | デフォルト |
 |------|------|-----------|
-| `keyPairName` | EC2 に使用するキーペア名 | `fukuyama` |
+| `keyPairName` | EC2 に使用するキーペア名 | `YOUR_KEY_PAIR_HERE`を書き換える |
 
-例：
+上書きする例：
 ```bash
 npx cdk deploy --context keyPairName=my-keypair
 ```
-
-## 主なコマンド
-
-* `npm run build`   TypeScript をコンパイル
-* `npm run watch`   変更を監視してコンパイル
-* `npx cdk deploy`  スタックをデプロイ
-* `npx cdk diff`    デプロイ済みスタックとの差分を確認
-* `npx cdk synth`   CloudFormation テンプレートを出力
