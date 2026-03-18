@@ -1,0 +1,35 @@
+{
+  "vpc-provider:account=305677112944:filter.isDefault=true:region=ap-northeast-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-4e937928",
+    "vpcCidrBlock": "172.31.0.0/16",
+    "ownerAccountId": "305677112944",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-ad2296e5",
+            "cidr": "172.31.32.0/20",
+            "availabilityZone": "ap-northeast-1a",
+            "routeTableId": "rtb-a67f3cc0"
+          },
+          {
+            "subnetId": "subnet-331afc69",
+            "cidr": "172.31.0.0/20",
+            "availabilityZone": "ap-northeast-1c",
+            "routeTableId": "rtb-a67f3cc0"
+          },
+          {
+            "subnetId": "subnet-fdf44ad6",
+            "cidr": "172.31.16.0/20",
+            "availabilityZone": "ap-northeast-1d",
+            "routeTableId": "rtb-a67f3cc0"
+          }
+        ]
+      }
+    ]
+  },
+  "ami:account=305677112944:filters.architecture.0=x86_64:filters.image-type.0=machine:filters.name.0=debian-13-*:filters.state.0=available:owners.0=136693071363:region=ap-northeast-1": "ami-0b773c7717809a69c"
+}
