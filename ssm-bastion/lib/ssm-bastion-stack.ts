@@ -14,6 +14,7 @@ export class SsmBastionStack extends cdk.Stack {
     const ami = ec2.MachineImage.lookup({
       name: 'debian-13-*',
       owners: ['136693071363'],
+      filters: { 'architecture': ['x86_64'] },
     });
 
     const sg = new ec2.SecurityGroup(this, 'Sg', { vpc });
