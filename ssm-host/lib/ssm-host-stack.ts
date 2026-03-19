@@ -16,6 +16,7 @@ export class SsmHostStack extends cdk.Stack {
     const ami = ec2.MachineImage.lookup({
       name: 'debian-13-amd64-*',
       owners: ['136693071363'],
+      filters: { 'architecture': ['x86_64'] },
     });
 
     // EC2 インスタンス用 IAM ロール
